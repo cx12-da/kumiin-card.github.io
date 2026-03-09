@@ -1,11 +1,13 @@
 {
-    "name": "りえるちゃんのてんし組 デジタル組員カード",
-    "short_name": "組員カード",
-    "description": "りえるちゃんのてんし組 デジタル組員カードサイトなのです",
-    "start_url": "./index.html",
-    "display": "standalone",
-    "background_color": "#ffffff",
     "theme_color": "#ffc0cb",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "lang": "Ja",
+    "name": "てんし組さん デジタル組員カード",
+    "short_name": "てんし組組員カード",
+    "description": "てんし組さん デジタル組員カードサイトです",
+    "start_url": "https://kumiin-card.github.io/",
+    "scope": "https://kumiin-card.github.io/",
     "icons": [
         {
             "src": "https://via.placeholder.com/192/ffc0cb/ffffff?text=組",

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>てんし組 デジタル組員カード</title>
+    <title>てんし組さん デジタル組員カード</title>
     <link rel="manifest" href="manifest.json">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -40,7 +40,7 @@
 <body class="select-none bg-pink-50 min-h-screen flex flex-col items-center font-sans overflow-hidden">
 
     <div class="text-center mb-6 mt-6">
-        <h1 class="text-xl font-bold text-pink-600 mb-1">てんし組 デジタル組員カード</h1>
+        <h1 class="text-xl font-bold text-pink-600 mb-1">てんし組さん デジタル組員カード</h1>
         <p class="text-[10px] text-pink-400">てんし組なのです！</p>
     </div>
 
@@ -105,7 +105,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-pink-600 mb-2 uppercase tracking-widest">サブタイトル</label>
-                    <input type="text" id="input-sub-title" placeholder="りえるちゃんのてんし組なのです！"
+                    <input type="text" id="input-sub-title" placeholder="てんし組なのです！"
                         class="block w-full px-4 py-2 text-sm border border-pink-100 rounded-lg focus:ring-2 focus:ring-pink-200 focus:outline-none">
                 </div>
             </div>
@@ -199,7 +199,7 @@
         });
 
         subInput.addEventListener('input', (e) => {
-            const val = e.target.value || "りえるちゃんのてんし組なのです！";
+            const val = e.target.value || "てんし組なのです！";
             subTitleEl.textContent = val;
             localStorage.setItem('custom-sub-title', val);
         });
@@ -234,7 +234,7 @@
         });
 
         function clearStorage() {
-            if (confirm('保存されている全ての画像データを削除しますか？')) {
+            if (confirm('保存されている全てのデータを削除しますか？')) {
                 localStorage.clear();
                 location.reload();
             }

@@ -1,0 +1,21 @@
+{
+    "name": "りえるちゃんのてんし組 デジタル組員カード",
+    "short_name": "組員カード",
+    "description": "りえるちゃんのてんし組 デジタル組員カードサイトなのです",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffc0cb",
+    "icons": [
+        {
+            "src": "https://via.placeholder.com/192/ffc0cb/ffffff?text=組",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://via.placeholder.com/512/ffc0cb/ffffff?text=組員",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>てんし組 デジタル組員カード</title>
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        .preserve-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-pink-50 min-h-screen flex flex-col items-center justify-center font-sans overflow-hidden">
+
+    <div class="text-center mb-6">
+        <h1 class="text-xl font-bold text-pink-600 mb-1">デジタル組員カード</h1>
+        <p class="text-[10px] text-pink-400">りえるちゃんのてんし組なのです！</p>
+    </div>
+
+    <div class="perspective-1000 w-[340px] h-[200px] md:w-[400px] md:h-[240px] cursor-pointer" onclick="flipCard()">
+        <div id="card-inner" class="relative w-full h-full preserve-3d shadow-2xl rounded-2xl">
+
+            <div id="front-display"
+                class="absolute w-full h-full backface-hidden bg-white rounded-2xl flex items-center justify-center border-2 border-pink-200 overflow-hidden">
+                <div class="text-center p-4">
+                    <p class="text-pink-300 text-sm">表面をアップロード</p>
+                    <p class="text-pink-200 text-[10px] mt-2">(設定から画像を選んでね)</p>
+                </div>
+            </div>
+
+            <div id="back-display"
+                class="absolute w-full h-full backface-hidden rotate-y-180 bg-white rounded-2xl flex items-center justify-center border-2 border-pink-200 overflow-hidden">
+                <div class="text-center p-4">
+                    <p class="text-pink-300 text-sm">裏面をアップロード</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <p class="mt-6 text-[11px] text-gray-400 animate-pulse">タップして裏返す</p>
+
+    <button onclick="toggleSettings()"
+        class="fixed bottom-6 right-6 w-12 h-12 bg-pink-400 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-pink-500 transition-colors z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+    </button>
+
+    <div id="settings-panel"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] hidden flex items-end sm:items-center justify-center p-4">
+        <div class="bg-white w-full max-w-sm rounded-2xl p-6 shadow-2xl transition-all transform translate-y-0">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-lg font-bold text-gray-700">カード設定</h2>
+                <button onclick="toggleSettings()" class="text-gray-400 hover:text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-pink-600 mb-2">表面の画像</label>
+                    <input type="file" id="upload-front" accept="image/*"
+                        class="block w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-pink-600 mb-2">裏面の画像</label>
+                    <input type="file" id="upload-back" accept="image/*"
+                        class="block w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100">
+                </div>
+
+                <hr class="border-pink-50">
+
+                <button onclick="clearStorage()"
+                    class="w-full py-2 text-xs text-red-400 hover:bg-red-50 rounded-lg transition-colors">
+                    全データをリセットする
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="fixed bottom-2 text-[8px] text-pink-300">
+        &copy; 2026 CX12 | MIT License
+    </footer>
+
+    <script>
+        let isFlipped = false;
+        function flipCard() {
+            isFlipped = !isFlipped;
+            const card = document.getElementById('card-inner');
+            card.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+        }
+
+        function toggleSettings() {
+            const panel = document.getElementById('settings-panel');
+            panel.classList.toggle('hidden');
+        }
+
+        const sides = ['front', 'back'];
+        sides.forEach(side => {
+            const input = document.getElementById(`upload-${side}`);
+            const display = document.getElementById(`${side}-display`);
+
+            const savedImage = localStorage.getItem(`card-${side}`);
+            if (savedImage) {
+                display.innerHTML = `<img src="${savedImage}" class="w-full h-full object-cover">`;
+            }
+
+            input.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const base64String = event.target.result;
+                    display.innerHTML = `<img src="${base64String}" class="w-full h-full object-cover">`;
+                    localStorage.setItem(`card-${side}`, base64String);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function clearStorage() {
+            if (confirm('全ての画像データを削除しますか？')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        // PWA Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
+        }
+    </script>
+</body>
+
+</html>

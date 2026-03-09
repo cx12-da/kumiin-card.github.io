@@ -46,17 +46,22 @@
 
     <div class="perspective-1000 w-[340px] h-[200px] md:w-[400px] md:h-[240px] cursor-pointer" onclick="flipCard()">
         <div id="card-inner" class="relative w-full h-full preserve-3d shadow-2xl rounded-2xl">
+
             <div id="front-display"
-                class="absolute w-full h-full backface-hidden bg-white rounded-2xl flex items-center justify-center border-2 border-pink-200 overflow-hidden text-center p-4">
-                <div>
-                    <p class="text-pink-300 text-sm font-bold">表面未設定</p>
+                class="absolute w-full h-full backface-hidden bg-white rounded-2xl flex items-center justify-center border-2 border-pink-200 overflow-hidden">
+                <div class="text-center p-4">
+                    <p class="text-pink-300 text-sm">表面をアップロード</p>
                     <p class="text-pink-200 text-[10px] mt-2">設定からアップロードしてくださいね</p>
                 </div>
             </div>
+
             <div id="back-display"
-                class="absolute w-full h-full backface-hidden rotate-y-180 bg-white rounded-2xl flex items-center justify-center border-2 border-pink-200 overflow-hidden text-center p-4">
-                <p class="text-pink-300 text-sm font-bold">裏面未設定</p>
+                class="absolute w-full h-full backface-hidden rotate-y-180 bg-white rounded-2xl flex items-center justify-center border-2 border-pink-200 overflow-hidden">
+                <div class="text-center p-4">
+                    <p class="text-pink-300 text-sm">裏面をアップロード</p>
+                </div>
             </div>
+
         </div>
     </div>
 
